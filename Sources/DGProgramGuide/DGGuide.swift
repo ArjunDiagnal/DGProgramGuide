@@ -16,28 +16,50 @@ public class DGGuide: UIView {
        private let items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
     
     override init(frame: CGRect) {
+        
         // Set up a UICollectionViewFlowLayout
-        // Setup collection view inside restView
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        
+        // Set item size (height = 50, width = full parent width)
+        layout.itemSize = CGSize(width: frame.size.width, height: 50)
+        
+        // Initialize UICollectionView with the layout
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-        // Initialize UICollectionView with the layout
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        super.init(frame: frame)
-        setupView()
+        
+        super.init(frame: frame) // Now that collectionView is initialized, call super.init
+        
+        collectionView.dataSource = self
+        
+        // Register a cell class for the collection view
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        setupView() // Now we can call setupView() after initialization
     }
     
     required init?(coder: NSCoder) {
+        // Set up a UICollectionViewFlowLayout
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.minimumLineSpacing = 10
+        layout.scrollDirection = .vertical
         
+        // Set item size (height = 50, width = full parent width)
+        layout.itemSize = CGSize(width: 320, height: 50) // Width should be a constant if you're using the coder initializer
+        
+        // Initialize UICollectionView with the layout
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        super.init(coder: coder)
-        setupView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        
+        super.init(coder: coder) // Now that collectionView is initialized, call super.init
+        
+        collectionView.dataSource = self
+        
+        // Register a cell class for the collection view
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        setupView() // Now we can call setupView() after initialization
     }
     
     private func setupView() {

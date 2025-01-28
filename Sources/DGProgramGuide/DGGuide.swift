@@ -9,18 +9,20 @@ import UIKit
 
 public class DGGuide: UIView {
     
-    private let collectionView: UICollectionView
+    private var collectionView: UICollectionView
+    private let playerView = UIView()
     
     // Sample data
        private let items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
     
     override init(frame: CGRect) {
         // Set up a UICollectionViewFlowLayout
+        // Setup collection view inside restView
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 100) // Customize item size
-        layout.minimumLineSpacing = 10
-        
+        layout.scrollDirection = .vertical
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
         // Initialize UICollectionView with the layout
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(frame: frame)
@@ -39,6 +41,20 @@ public class DGGuide: UIView {
     }
     
     private func setupView() {
+        
+        // Add and configure the black subview
+        playerView.backgroundColor = .black
+        playerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(playerView)
+        
+        // Add constraints to position the black subview
+        NSLayoutConstraint.activate([
+            playerView.topAnchor.constraint(equalTo: topAnchor),
+            playerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            playerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            playerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3) // 30% height
+        ])
+        
         // Set background color for the custom view
         backgroundColor = .white
         
@@ -56,15 +72,22 @@ public class DGGuide: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         // Add constraints
+        
+        // Add constraints for restView
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.topAnchor.constraint(equalTo: playerView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor) // Covers remaining height
         ])
+        
     }}
 
 extension DGGuide: UICollectionViewDelegate {
+    
+    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("Selected item UICollectionViewDelegate : \(items[indexPath.item])")
+    }
     
 }
 

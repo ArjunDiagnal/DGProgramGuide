@@ -21,8 +21,6 @@ public class DGGuide: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        // Set item size (height = 50, width = full parent width)
-        layout.itemSize = CGSize(width: frame.size.width, height: 50)
         
         // Initialize UICollectionView with the layout
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -44,8 +42,6 @@ public class DGGuide: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        // Set item size (height = 50, width = full parent width)
-        layout.itemSize = CGSize(width: 320, height: 50) // Width should be a constant if you're using the coder initializer
         
         // Initialize UICollectionView with the layout
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -147,9 +143,9 @@ extension DGGuide: UICollectionViewDataSource {
 extension DGGuide: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100) // Customize item size if needed
+        return CGSize(width: collectionView.frame.size.width, height: 50)
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected item: \(items[indexPath.item])")
     }

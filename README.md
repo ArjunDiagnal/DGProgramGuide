@@ -1,5 +1,11 @@
 # DGProgramGuide Integration
 
+![Image](https://github.com/user-attachments/assets/f59a92ab-97a5-4fdb-80a5-487fa26244b3)
+
+![Image](https://github.com/user-attachments/assets/8b31e6e1-cad0-4563-b4ec-f1412f2737a0)
+
+![Image](https://github.com/user-attachments/assets/61db5042-9b9d-489f-8237-657910c63d24)
+
 This repository demonstrates how to integrate the `DGProgramGuide` framework into a view controller and display a TV guide.
 
 ## 📌 Prerequisites

@@ -145,17 +145,17 @@ extension EPGViewController: DGGuideDelegate {
     /// Function returns the selected channel stream url which is passed on to the view controller to fetch the playback url and m3u8 file is fed back into tv guide using data source methods
     }
     
+    /// Optional function to hide tab bar controller if present
     func scrollViewDidScroll(shouldHideView: Bool) {
-       
     }
 }
 //MARK:- EPG data source methods
 extension EPGViewController: DGGuideDelegate {
-    /// Implement data source methods
+    /// Function to return m3u8 url to TG Guide for playback
     func shouldStartPlayback() -> String? {
         
     }
-    
+    /// Function to set the TV Guide data
     func dataForItem() -> [GuideEntries]? {
         
     }

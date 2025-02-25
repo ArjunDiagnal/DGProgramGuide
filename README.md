@@ -45,9 +45,6 @@ func setupTVGuide() {
     epgView.backgroundColor = .black /// Background colour set to black by default
     epgView.translatesAutoresizingMaskIntoConstraints = false
     epgView.delegate = self
-    
-    let convertedEntries = self.convertModel(channelList) /// channel list is the data for EPG
-    epgView.channelList = convertedEntries
     epgView.parentController = self
     
     view.addSubview(epgView)
@@ -141,8 +138,28 @@ extension EPGViewController {
 Ensure that your view controller conforms to `DGGuideDelegate` (if required) and implement the necessary delegate methods.
 
 ```swift
+//MARK:- EPG delegate methods
 extension EPGViewController: DGGuideDelegate {
-    // Implement delegate methods if needed
+/// Implement delegate methods
+    func didSelectItem(stream: String) {
+    /// Function returns the selected channel stream url which is passed on to the view controller to fetch the playback url and m3u8 file is fed back into tv guide using data source methods
+    }
+    
+    func scrollViewDidScroll(shouldHideView: Bool) {
+       
+    }
+}
+//MARK:- EPG data source methods
+extension EPGViewController: DGGuideDelegate {
+    /// Implement data source methods
+    func shouldStartPlayback() -> String? {
+        
+    }
+    
+    func dataForItem() -> [GuideEntries]? {
+        
+    }
+
 }
 ```
 
